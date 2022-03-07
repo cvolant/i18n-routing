@@ -38,7 +38,14 @@ export default function GspPage(props) {
   )
 }
 
-export const getStaticProps = ({ locale, locales }) => {
+export const getStaticProps = ({ locale, locales, params }) => {
+  if (locale === 'fr') {
+    return {
+      redirect: {
+        destination: `/nl/gsp/${params.slug}`
+      },
+    }
+  }
   return {
     props: {
       locale,
@@ -50,10 +57,10 @@ export const getStaticProps = ({ locale, locales }) => {
 export const getStaticPaths = ({ locales }) => {
   const paths = []
 
-  for (const locale of locales) {
+  /* for (const locale of locales) {
     paths.push({ params: { slug: 'first' }, locale })
     paths.push({ params: { slug: 'second' }, locale })
-  }
+  } */
 
   return {
     paths,
