@@ -34,6 +34,13 @@ export default function GsspPage(props) {
 }
 
 export const getServerSideProps = ({ locale, locales }) => {
+  if (locale === 'fr') {
+    return {
+      redirect: {
+        destination: '/nl/gssp',
+      },
+    }
+  }
   return {
     props: {
       locale,
